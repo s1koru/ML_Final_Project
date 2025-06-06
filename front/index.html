@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Прогноз банкротства компании</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="page-container">
+    <h1 class="page-title">Прогноз банкротства компании</h1>
+
+    <!-- 1. Выбор модели -->
+    <div class="card">
+      <label for="modelSelect" class="label">Выберите модель:</label>
+      <select id="modelSelect" class="select" disabled>
+        <option value="" disabled selected>Идёт загрузка моделей…</option>
+      </select>
+    </div>
+
+    <!-- 2. Блок с полями для 10 признаков (динамически заполняется JS и появляется только после выбора модели) -->
+    <div id="featuresCard" class="card" style="display: none;">
+      <h2 class="section-title">Введите ключевые параметры</h2>
+      <form id="featuresForm" class="features-form">
+        <!-- JavaScript вставит ровно 10 <div class="feature-item">…</div> сюда: -->
+        <div id="featuresContainer" class="features-grid">
+          <!-- Пример одного «feature-item» (он будет создан JS-ом):
+          <div class="feature-item">
+            <label for="feat0" class="label">[Имя признака]</label>
+            <input type="number" step="any" id="feat0" class="input" required>
+          </div>
+          -->
+        </div>
+
+        <button type="submit" id="predictBtn" class="button-primary" disabled>
+          Получить прогноз
+        </button>
+      </form>
+    </div>
+
+    <!-- 3. Блок с результатом (скрыт до момента, пока не придёт ответ с сервера) -->
+    <div id="resultCard" class="card" style="display: none;">
+      <h2 class="section-title">Результат прогнозирования</h2>
+      <div class="result-text" id="predictionText"></div>
+      <div class="result-text" id="probText"></div>
+      <button id="resetBtn" class="button-secondary">Новая проверка</button>
+    </div>
+  </div>
+
+  <!-- Подключаем JS, в котором логика загрузки моделей, отрисовки 10 полей и отправки запроса -->
+  <script src="script.js"></script>
+</body>
+</html>

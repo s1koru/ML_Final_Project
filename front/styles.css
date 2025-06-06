@@ -1,0 +1,175 @@
+/* Сброс отступов, базовые шрифты */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f7fa;
+  color: #333333;
+}
+
+/* Основной контейнер, центрирование по горизонтали */
+.page-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Заголовок */
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Карточка */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 25px;
+}
+
+/* Заголовок внутри карточки */
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Метка для <select> и <input> */
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+}
+
+/* Стили для <select> */
+.select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  cursor: pointer;
+  appearance: none;
+  transition: border-color 0.2s;
+}
+.select:disabled {
+  background-color: #eceff1;
+  cursor: not-allowed;
+}
+.select:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+/* Сетка для 10 признаков */
+.features-form {
+  width: 100%;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.feature-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Поля ввода */
+.input {
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  transition: border-color 0.2s;
+}
+.input:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+/* Основная кнопка */
+.button-primary {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  background-color: #6c63ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.button-primary:hover:not(:disabled) {
+  background-color: #574fd1;
+}
+.button-primary:disabled {
+  background-color: #b3aefa;
+  cursor: not-allowed;
+}
+
+/* Вторичная кнопка (reset) */
+.button-secondary {
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  background-color: #e0e0e0;
+  color: #2c3e50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 15px;
+}
+.button-secondary:hover {
+  background-color: #c6c6c6;
+}
+
+/* Текст результата */
+.result-text {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .features-grid {
+    gap: 12px;
+  }
+  .label {
+    font-size: 0.9rem;
+  }
+  .input {
+    font-size: 0.9rem;
+  }
+  .button-primary,
+  .button-secondary {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
