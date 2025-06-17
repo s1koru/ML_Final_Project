@@ -1,7 +1,4 @@
-// frontend/script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) Ссылки на элементы DOM:
   const modelSelect = document.getElementById('modelSelect');
   const featuresCard = document.getElementById('featuresCard');
   const featuresContainer = document.getElementById('featuresContainer');
@@ -11,10 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const predictionText = document.getElementById('predictionText');
   const probText = document.getElementById('probText');
   const resetBtn = document.getElementById('resetBtn');
-
-  // 2) Здесь “зашиты” по 10 признаков для каждой модели.
-  //    Именно **те самые названия** из Russian_columns, 
-  //    которые вы определили в ноутбуке (топ-10 по важности для каждой модели).
   const modelFeatures = {
     'random_forest': [
       "ROA(B) до вычета процентов и амортизации после налогообложения",
@@ -54,20 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-  // 3) Запрашиваем у бэкенда список доступных моделей
   fetch('http://127.0.0.1:5000/api/models')
     .then(response => response.json())
     .then(data => {
-      // Очищаем <select> и вставляем опции
       modelSelect.innerHTML = '<option value="" disabled selected>Выберите модель</option>';
       data.models.forEach(key => {
         const opt = document.createElement('option');
         opt.value = key;
-        // Для более дружелюбного отображения можно:
-        //   if (key === 'random_forest') opt.textContent = 'Случайный лес';
-        //   else if (key === 'logistic_regression') opt.textContent = 'Логистическая регрессия';
-        //   else if (key === 'gradient_boosting') opt.textContent = 'Градиентный бустинг';
-        //   else opt.textContent = key;
         opt.textContent = key;
         modelSelect.appendChild(opt);
       });
@@ -78,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       modelSelect.innerHTML = '<option value="" disabled>Ошибка загрузки</option>';
     });
 
-  // 4) Когда пользователь выбирает модель — динамически строим 10 полей
   modelSelect.addEventListener('change', () => {
     const chosen = modelSelect.value;
     if (!chosen) {
@@ -88,15 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Очищаем контейнер
     featuresContainer.innerHTML = '';
-    // Берём из modelFeatures ровно тот массив из 10 названий, что соответствует ключу
     const featNames = modelFeatures[chosen] || [];
     if (featNames.length !== 10) {
       console.warn(`Для модели ${chosen} список признаков не длины 10!`);
     }
 
-    // Генерируем 10 пар: <label for="feat{i}">Имя признака</label> + <input id="feat{i}" ...>
     featNames.forEach((name, idx) => {
       const wrapper = document.createElement('div');
       wrapper.classList.add('feature-item');
@@ -113,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       inp.classList.add('input');
       inp.required = true;
 
-      // При любом вводе — проверяем, остались ли незаполненные поля
       inp.addEventListener('input', checkFormValidity);
 
       wrapper.appendChild(lbl);
@@ -121,35 +102,29 @@ document.addEventListener('DOMContentLoaded', () => {
       featuresContainer.appendChild(wrapper);
     });
 
-    // Показываем «карточку» с полями, сбрасываем кнопку
     featuresCard.style.display = 'block';
     predictBtn.disabled = true;
   });
 
-  // 5) Функция, чтобы проверить заполнены ли все 10 полей:
   function checkFormValidity() {
     const inputs = Array.from(featuresContainer.querySelectorAll('input'));
     const allFilled = inputs.every(i => i.value.trim() !== '');
     predictBtn.disabled = !allFilled;
   }
 
-  // 6) Когда пользователь нажимает «Получить прогноз»
   featuresForm.addEventListener('submit', e => {
     e.preventDefault();
     const chosen = modelSelect.value;
     if (!chosen) return;
 
-    // Собираем 10 введённых значений
     const inputs = Array.from(featuresContainer.querySelectorAll('input'));
     const featuresArr = inputs.map(i => parseFloat(i.value));
 
-    // JSON для отправки
     const payload = {
       model: chosen,
       features: featuresArr
     };
 
-    // Блокируем кнопку, меняем текст
     predictBtn.textContent = 'Проверяем…';
     predictBtn.disabled = true;
 
@@ -177,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
             probText.textContent = '';
           }
         }
-        // Скрываем форму ввода, показываем результат
         featuresCard.style.display = 'none';
         resultCard.style.display = 'block';
       })
@@ -193,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  // 7) «Новая проверка» — сброс всех полей и состояния
   resetBtn.addEventListener('click', () => {
     modelSelect.value = '';
     featuresContainer.innerHTML = '';
