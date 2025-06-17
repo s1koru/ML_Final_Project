@@ -1,4 +1,4 @@
-/* Сброс отступов, базовые шрифты */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,14 +12,12 @@ html, body {
   color: #333333;
 }
 
-/* Основной контейнер, центрирование по горизонтали */
 .page-container {
   max-width: 700px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* Заголовок */
 .page-title {
   text-align: center;
   font-size: 2rem;
@@ -27,7 +25,6 @@ html, body {
   color: #2c3e50;
 }
 
-/* Карточка */
 .card {
   background: #ffffff;
   border-radius: 12px;
@@ -36,14 +33,12 @@ html, body {
   margin-bottom: 25px;
 }
 
-/* Заголовок внутри карточки */
 .section-title {
   font-size: 1.25rem;
   margin-bottom: 20px;
   color: #2c3e50;
 }
 
-/* Метка для <select> и <input> */
 .label {
   display: block;
   margin-bottom: 8px;
@@ -51,7 +46,6 @@ html, body {
   color: #4a4a4a;
 }
 
-/* Стили для <select> */
 .select {
   width: 100%;
   padding: 10px 14px;
@@ -73,7 +67,6 @@ html, body {
   border-color: #6c63ff;
 }
 
-/* Сетка для 10 признаков */
 .features-form {
   width: 100%;
 }
@@ -88,7 +81,6 @@ html, body {
   flex-direction: column;
 }
 
-/* Поля ввода */
 .input {
   padding: 8px 12px;
   font-size: 0.95rem;
@@ -103,7 +95,6 @@ html, body {
   border-color: #6c63ff;
 }
 
-/* Основная кнопка */
 .button-primary {
   display: inline-block;
   width: 100%;
@@ -126,7 +117,6 @@ html, body {
   cursor: not-allowed;
 }
 
-/* Вторичная кнопка (reset) */
 .button-secondary {
   display: inline-block;
   padding: 10px 16px;
@@ -145,14 +135,12 @@ html, body {
   background-color: #c6c6c6;
 }
 
-/* Текст результата */
 .result-text {
   font-size: 1rem;
   margin-bottom: 10px;
   color: #34495e;
 }
 
-/* Адаптив для мобильных устройств */
 @media (max-width: 480px) {
   .page-title {
     font-size: 1.5rem;
